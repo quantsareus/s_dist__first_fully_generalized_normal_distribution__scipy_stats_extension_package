@@ -52,6 +52,8 @@ The current parameter space will roughly covers about 95% of the empirical dists
 
 Download the source code to <path_to_s_dist>/s_dist/ . In case unzip the zip archive
 
+Unzip ./s_dist/table.csv.zip (Github does not allow files greater than 25 MB)
+
 [If you want to add to an existing anaconda installation:] 
 cd ~/anaconda3  [or where your local anaconda installation is]
 
