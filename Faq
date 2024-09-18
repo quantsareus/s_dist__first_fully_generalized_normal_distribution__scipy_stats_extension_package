@@ -1,0 +1,16 @@
+
+FAQ
+
+
+- I want to calculate a new table with more fine k and a values. (The default resolution is 0.005 for both.) Can I do that? Answer: Yes, you can. However, there is no corresponding random number generation method yet, which can generate random numbers more precise than that. To get specific with precision in the central moments corresponding to a resolution more fine than 0.005 in k and a. It has taken the author years to invent the current number generation method based on large populations, that has been a massive kangaroo jump forward in precision, already. Regarding moment precision the standard number generation methods are all crap. 
+
+- I do require higher k values higher than 3. Can I calculate a new table including higher k using table_calc()? Answer: Yes, you can.
+
+- I do require lower k values lower than 1. Can I calculate a new table including lower k using table_calc()? Answer: No, you (mostly) cannot. For effective k' lower than 1, the dist gets very broad spread. But the numerical interval is limited. (The table_calc() default interval is [-250, 250] ). For any effective k' getting more low than 1, the required numerical interval to catch all the density will grow exponentially.
+
+- I do require a values outside the intervall [ 0.5, 2]. Can I calculate a new table with more broad a limits using table_calc()? Answer: You can (mostly) only extend extend the table, where the effective k' does remain k' >= 1. The effective k' is calculated k'= k*a in the left part and k'= k/a in the right part of the dist. Keeping it simple, you can e.g. extend the a intervall in combination with k close to 3 but not in combination with k close to 1. 
+
+- When can I expect a (full) analytic solve of S dist to overcome the current numerical limits? Answer: The world's whole math community has promised to me personally one by one to me to find a full analytical solve until the end of next year or even more soon.;-) Gettting serios again. The more questions you are asking about fully generalized S dist and related methode (e.g. FGLM, Area-Fit, R_Lk) in internet forums and maybe also directly by email to probability math professors and numerical math professors, the more soon there will be a (full) analytical solve. Mathematicians are living in the university castle. But usually they are very interested, when someone comes up with practice application cases for their highly abstract science. The point is mostly just finding the appropriate math language terms for the problem. But there are data science/ statistics forums on the internet for all skill niveaus.   
+
+
+

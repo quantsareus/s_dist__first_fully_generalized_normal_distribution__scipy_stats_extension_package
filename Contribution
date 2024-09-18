@@ -1,0 +1,33 @@
+
+You are very welcome to contribute to this tool! All you need to do to make your contribution on to the tool as a non development team member is the following:
+
+1. git clone https://github.com/quantsareus/reprod<...>.git
+2. cd reprod<...>
+3. Make your edits.
+4. git add --all
+5. git commit -m '<description of your fabulous update>' 
+6. git push origin <name_of_your_fork_branch>
+
+However, before you can do that, you need to register on github.com, once.
+
+If you are not familiar with the magic collab development tool 'git' already, search for the free ProGit_2020.pdf book (or a newer version) on duckduckgo.com. The book explains everything perfect.
+
+Alternatively, it should also be possible to create a fork using the guthub web interface. In case request duckduckgo.com, how to perform that.
+
+
+Your improved version has to meet four little requirements to get accepted to be incorporated into the main line version:
+
+1. You have to provide a working version, that can be tried out.
+2. The update version can still be distributed as a single file.
+3. The update version does not contain a GUI element.
+4. An update version usually contains the features of the current version.
+
+Other than these few requirements will - from the author's point of view - unnecessarily complicate the tiny tool. The last requirement, however, might be discussed, when offerering a significant improvement of the tool, that's ready to use.
+
+
+Your accepted fork currently gets merged into the main branch at least once a month, when I take my research days.
+
+
+In case the author does provide a personal '# Further development options' note at the end of each python modul. If there is such, you very welcome to pick it up, if you like.  
+
+
