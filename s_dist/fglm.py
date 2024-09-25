@@ -154,25 +154,25 @@ def fglm_fit_report(y, X, iter_max=25, b_change_min=1e-3):
 	    a_= e_params_[1]
 	    z_= e_params_[2]
 	    c_= e_params_[3]
-	        
-        # Forward of the table moments
+	    
+             # Forward of the table moments
 	    e_moments_= s_stats(c_, z_, k_, a_, stddist=True)
 	    e_mean_= e_moments_[0]
 	    e_std_= e_moments_[1]
 	    e_skew_= e_moments_[2]
 	    e_kurt_= e_moments_[3]
             
-        ################################################################
+            ################################################################
 	    ### Tense Weights
 	    
 	    # Correction of skewness mean shift 
 	    w= e_ -c_
 	    
-        # Appropriate weight tense for k_*a_ >1 respectively k_/a_ >1
+            # Appropriate weight tense for k_*a_ >1 respectively k_/a_ >1
 	    w[w <0]= (np.abs(w[w <0]) ) **(0.25* (k_*a_ -2))
 	    w[w >0]= (np.abs(w[w >0]) ) **(0.25* (k_/a_ -2))
 	    
-        # Renorming weights to sum up to 1 again
+            # Renorming weights to sum up to 1 again
 	    w= np.abs(w)/ sum(np.abs(w))
 	    
 	    W= np.diag(w)
@@ -204,7 +204,7 @@ def fglm_fit_report(y, X, iter_max=25, b_change_min=1e-3):
 	    print("")
 	    print("error moments", "  mean:", e_mean, "  std:", e_std, "  skew:", e_skew, "  kurt:", e_kurt)	 
 	    print("table moments", "  mean_:", e_mean_, "  std_:", e_std_, "  skew_:", e_skew_, "  kurt_:", e_kurt_)	 
-	    print("table parameters", "  c_:", c_, "  z_:", z_, "  k_:", k_, "  a_:", a_)
+	    print("table parameters", "  k_:", k_, "  a_:", a_, "  z_:", z_, "  c_:", c_, )
 	    print("beta ", b_, "  corr.intercept", b_interc_corr_, "  beta change to last:", b_change) 
 	    print("GoF", "  R_L1:", r_l1_, "  R_L2:", r_l2_, "  R_Lk:", r_lk_)
 	    print("")
@@ -244,7 +244,7 @@ def fglm_fit_report(y, X, iter_max=25, b_change_min=1e-3):
     print("")
     print("error moments", "  mean:", e_0_mean, "  std:", e_0_std, "  skew:", e_0_skew, "  kurt:", e_0_kurt)
     print("table moments", "  mean_:", e_0_mean_, " std_:", e_0_std_, "  skew_:", e_0_skew_, "  kurt_:", e_0_kurt_)
-    print("table parameters", "  c_:", c_0, "  z_:", z_0, "  k_:", k_0, "  a_:", a_0)
+    print("table parameters", "  k_:", k_0, "  a_:", a_0, "  z_:", z_0, "  c_:", c_0 )
     print("beta ", b_0, "  corr.intercept", b_0_interc_corr_) 
     print("GoF", "  R_L1:", r_l1_0, "  R_L2:", r_l2_0 ,"  R_Lk:", r_lk_0)
     print("")
@@ -309,31 +309,31 @@ def fglm_fit(y, X, iter_max=25, b_change_min=1e-3):
 	    e_std= e_moments[1]
 	    e_skew= e_moments[2]
 	    e_kurt= e_moments[3]
-    	
+    	    
 	    e_params_= s_fit(e_)
 	    k_= e_params_[0]
 	    a_= e_params_[1]
 	    z_= e_params_[2]
 	    c_= e_params_[3]
 	    
-        # Forward of the table moments
+            # Forward of the table moments
 	    e_moments_= s_stats(c_, z_, k_, a_, stddist=True)
 	    e_mean_= e_moments_[0]
 	    e_std_= e_moments_[1]
 	    e_skew_= e_moments_[2]
 	    e_kurt_= e_moments_[3]
 
-        ################################################################
+            ################################################################
 	    ### Tense Weights
 	    
-	    # Correction of skewness mean shift 
+	    # Correction of skewness mean shift
 	    w= e_ +c_
 	    
-        # Appropriate weight tense for k_*a_ >1 respectively k_/a_ >1
+            # Appropriate weight tense for k_*a_ >1 respectively k_/a_ >1
 	    w[w <0]= (np.abs(w[w <0]) ) **(0.25* (k_*a_ -2))
 	    w[w >0]= (np.abs(w[w >0]) ) **(0.25* (k_/a_ -2))
 	    
-        # Renorming weights to sum up to 1 again
+            # Renorming weights to sum up to 1 again
 	    w= np.abs(w)/ sum(np.abs(w))
 	    
 	    W= np.diag(w)
@@ -359,11 +359,10 @@ def fglm_fit(y, X, iter_max=25, b_change_min=1e-3):
 	    ### Reporting
 	    print("Iteration No.", i)
 	    # print("")
-	
-	
-	# Return a list of result objects
+	    
+            
+    # Return a list of result objects
     return [y_, b_, b_interc_corr_, e_params_, e_]
-
 
 
 

@@ -279,16 +279,17 @@ def mk_a_pop(n, d, u_res, u, dtol_max=1e-6):
     	return pop
 
 
-#   
-def sample(n, pop):
+#
+def sample(n, pop, replace=False):
     """
     Sampling function
     
     n: desired number of observations (size)
     pop: value vector of population values
+    replace=false: Already drawn items cannot be drawn again
     """
     
-    x= pop.take(np.random.permutation(len(pop))[:n])	
+    x= np.random.choice(pop, size=n, replace=replace)
     
     return x
 
@@ -325,7 +326,7 @@ def s_pdf(x, k, a, z, c):
     return f
     
     
-#   
+#
 def s_pdf_hp(x, k, a, z, c):
     """
     S dist high precision PDF
@@ -1230,4 +1231,3 @@ s_dist= s_dist_gen(name='s_dist')
 ## Update License.txt?
 
 
-## Follow uo project
