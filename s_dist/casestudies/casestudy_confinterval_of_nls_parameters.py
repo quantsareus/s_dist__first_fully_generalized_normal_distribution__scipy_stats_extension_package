@@ -27,7 +27,7 @@ def exp_fun(x, b0, b1, b2):
 # Reduced rank exponential function
 def exp_fun_a(x, b0, b1, b2):
     return b2 *np.exp( -b1 *x) +b0
-  
+
 
 
 #############################################################################################################################################################################################################################################
@@ -44,6 +44,7 @@ x= np.arange(0, 100, x_res)
 # Noise Generation
 y_noise= 0.02 *np.random.randn(x.shape[0])
 scalfac_noise= x_res* np.sum(np.abs(y_noise))
+# area signal to noise ratio of 1
 scalfac_signal= scalfac_noise
 
 
@@ -55,21 +56,22 @@ params_sig= [1.95, 1.31, 2.61, 50]
 # print(params_sig)
 # print("")
 
-# y_signal= s_pdf(x, params_sig[0],  params_sig[1], params_sig[2], params_sig[3] )
-# Creating a spectral line signal with an area signal to noise ratio of 1
-y_signal= s_pdf(x, params_sig[0], params_sig[1], params_sig[2], params_sig[3] ) *scalfac_signal
+
+# Creating another - here disturbing - signal
+# y_signal= s_dist.pdf(x, params_sig[0],  params_sig[1], params_sig[2], params_sig[3] )
+y_signal= s_dist.pdf(x, params_sig[0], params_sig[1], params_sig[2], params_sig[3] ) *scalfac_signal
 
 
 # Base Funcion Generation
 
 # base_exp
-# fast horizontal 
+# almost horizontal
 # y_base= exp_fun(x, 0.5, -10, -0.1)
-# schräg 
+# skew
 # y_base= exp_fun(x, 0.5, -10, -0.05)
 
 # base exp_a
-# schräg
+# skew
 y_base= exp_fun_a(x, 1.5, 0.01, 1)
 
 
@@ -137,7 +139,8 @@ print("")
 print("It is extremely difficult to compute a confidence interval of the exponential base function parameters here, for the following reasons:")
 print("- Basically, there is no pertinent probability dist for the parameters of a (full rank) exponential function fitted by some (in detail unknown) non-linear squares method")
 print("- Making it worse, the fit process has only been performed on the outer x-axis values. Thus, the parameter estimates will be more volatile than usual (hat value effect)")
-print("Thus till now, one cannot seriously calculate an e.g. 95% confidence interval")
+print("")
+print("Thus till now, one cannot seriously calculate an e.g. 95% confidence interval for the parameters (except by a time consuming 5000 iterations bootstrap, or even larger)")
 print("")
 print("")
 
@@ -146,9 +149,9 @@ print("To the help the eating almost anything S dist comes in")
 print("")
 
 
-base_b_0_sparams= s_fit(base_b_array[:, 0])
-base_b_1_sparams= s_fit(base_b_array[:, 1])
-base_b_2_sparams= s_fit(base_b_array[:, 2])
+base_b_0_sparams= s_dist.fit(base_b_array[:, 0])
+base_b_1_sparams= s_dist.fit(base_b_array[:, 1])
+base_b_2_sparams= s_dist.fit(base_b_array[:, 2])
 """
 print("S dist parameters of the the dist of base_b_0 (intercept)")
 print(base_b_0_sparams)
@@ -164,13 +167,13 @@ print("")
 """
 
 print("base_b_0 95% Interval")
-print(s_interval(0.95, base_b_0_sparams[0], base_b_0_sparams[1], base_b_0_sparams[2], base_b_0_sparams[3]) )
+print(s_dist.interval(0.95, base_b_0_sparams[0], base_b_0_sparams[1], base_b_0_sparams[2], base_b_0_sparams[3]) )
 print("")
 print("base_b_1 95% Interval")
-print(s_interval(0.95, base_b_1_sparams[0], base_b_1_sparams[1], base_b_1_sparams[2], base_b_1_sparams[3]) )
+print(s_dist.interval(0.95, base_b_1_sparams[0], base_b_1_sparams[1], base_b_1_sparams[2], base_b_1_sparams[3]) )
 print("")
 print("base_b_2 95% Interval")
-print(s_interval(0.95, base_b_2_sparams[0], base_b_2_sparams[1], base_b_2_sparams[2], base_b_2_sparams[3]) )
+print(s_dist.interval(0.95, base_b_2_sparams[0], base_b_2_sparams[1], base_b_2_sparams[2], base_b_2_sparams[3]) )
 print("")
 
 

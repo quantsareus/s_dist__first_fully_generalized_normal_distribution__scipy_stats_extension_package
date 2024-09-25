@@ -49,7 +49,7 @@ print("")
 print("Defined error params ", e_creat_params)
 print("")
 
-e_theo_moments= s_dist.stats(k, a, c, z)
+e_theo_moments= s_dist.stats(k, a, z, c)
 print("Corresponding perfect table moments  ", e_theo_moments)
 print("")
 
