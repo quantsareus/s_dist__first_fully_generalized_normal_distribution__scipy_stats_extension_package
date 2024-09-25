@@ -19,7 +19,7 @@ from distutils.core import setup
 
 setup(
 	name="s_dist",
-	version= "0.32",
+	version= "0.34",
 	author= "Schlingmann, H",
 	author_email= "email{at]quantsareus[dot}net",
 	maintainer= "QuantsAreUs",
@@ -36,7 +36,7 @@ setup(
 	# py_modules= ["global_modul"],
 	# scripts in the project's root directory not to be included in the distribution archive (e.g. building scripts):
 	# scripts= [""],
-	description= "A mainly uninteresting number crunching modul",
+	description= "A mainly uninteresting number crunching package",
 	long_description="From 100 _random_ people discovering the package, most probably about 97 (or even more) will find it uninteresting. It is a special hobby"
 	)
 
