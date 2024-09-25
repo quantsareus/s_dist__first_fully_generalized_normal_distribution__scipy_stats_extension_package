@@ -45,7 +45,7 @@ numsetup= [0.005, -250, 250]
 ### Functions
 
 #   
-def table_calc(k_min=1.0, k_max=3.0, k_res=0.005, a_min=0.5, a_max=2, a_res=0.005, dtol_max=5e-2, a_half_high=False, u_res=0.01, u_min=-250, u_max=250 ):
+def table_calc(k_min=1.0, k_max=3.0, k_res=0.005, a_min=0.5, a_max=2, a_res=0.005, dtol_max=5e-2, a_half_low=False, u_res=0.01, u_min=-250, u_max=250 ):
     """
     Table calculator
     A default dist table is provided out-of-the-box. The output file is table.csv
@@ -76,19 +76,18 @@ def table_calc(k_min=1.0, k_max=3.0, k_res=0.005, a_min=0.5, a_max=2, a_res=0.00
     a= pd.Series(np.arange(a_min, a_max +a_res, a_res, dtype=np.float128))
     # 1/a values addition in case of half intervall definition of a
     
-    if a_half_high== True:
-        a_left= pd.Series( 1/ a[1:] )
-        a= pd.concat([a_left, a])
-    
-    c= np.array([0], dtype=np.float128)
+    if a_half_low== True:
+        a_right= pd.Series( 1/ a[:-1] )
+        a= pd.concat([ a, a_right])
     
     z= np.array([1], dtype=np.float128)
     
+    c= np.array([0], dtype=np.float128)
+    
     k= pd.DataFrame(({"key": np.repeat(0, k.shape[0]), "k": pd.Series(k)}))
     a= pd.DataFrame(({"key": np.repeat(0, a.shape[0]), "a": pd.Series(a)}))
-    c= pd.DataFrame({"key": np.repeat(0, c.shape[0]), "c": pd.Series(c)})
     z= pd.DataFrame({"key": np.repeat(0, z.shape[0]), "z": pd.Series(z)})
-    
+    c= pd.DataFrame({"key": np.repeat(0, c.shape[0]), "c": pd.Series(c)})
     
     params= pd.merge(k, a)
     params= pd.merge(params, z)
@@ -149,11 +148,11 @@ def table_calc(k_min=1.0, k_max=3.0, k_res=0.005, a_min=0.5, a_max=2, a_res=0.00
 
 
 # Test table 
-# table_calc(k_min=1.99, k_max=2.01, a_min=0.99, a_max=1.01, a_half_high=True)
+# table_calc(k_min=1.99, k_max=2.01, a_min=0.99, a_max=1.01, a_half_low=True)
 
 
 # Recreate the default table 
-table_calc(a_min=1.0, a_max=2.0, a_half_high=True)
+table_calc(a_min=0.5, a_max=1.0, a_half_low=True)
 
 
 
