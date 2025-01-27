@@ -1,3 +1,4 @@
+
 This is an implementation of the fully generalized S dist invented by Schlingmann, H., that was published in the Phd thesis 'Introducing a fully generalized normal distribution' in January 2024 on Github (github.com/quantsareus/introducing_a_fully_generalized_normal_distribution). The thesis proves, that the new distribution is valid; further it also explains a lot of the numerical methods applied in this stats lib. 
 
 Summing it up short, the new S dist is the first generalized normal dist, that is flexible in both, skewness and kurtosis (power), at the same time (= fully generalized). The new giant flexibility makes it a very univeral distribution, that eats about 95% of the empirical dists (including the dists of metrics and parameters), that do occur in daily data science practice.   
@@ -17,10 +18,10 @@ where
 and
 
 x: independent input variable
-c: construction location parameter
+k: power and kurtosis parameter € [ 1, 3]
+a: asymmetry parameter € [ 0.5, 2]
 z: deviation scale parameter
-k: power and kurtosis parameter € [1, 3]
-a: asymmetry parameter € [0.5, 2]
+c: construction location parameter
 
 
 On the advantages hand the giant flexibility of the new S dist in skewness and kurtosis opens a complete new horizon in data science. Over the thumb the current central statistics framework out of normal, Gaussian, chi square, t and f dist comparably covers less than 0.1 % of the dist set of S dist. Getting specific, the S dist can approximate the t dist from degree 5 and up and can approximate the f dists from degree (18, 18) and up in good quality. So, it should be more or less possible to model all random errors and all parameters of any data with a number count higher than 20 by just one S distribution! All the nasty lookup of the individual test/ distribution corresponding to the parameter of interest is not required any more. Thus, the new distribution allows for a much higher degree of automation in data science analysis.
@@ -34,23 +35,25 @@ On the disadvantages hand it has been necessary to implement some parts of the p
 
 The valid parameter space of the current implementation is
 
-c: basically unlimited (within Python number and precision limits)
-z: basically unlimited (within Python number and precision limits)
 k: k € [ 1, 3]
 a: a € [ 0.5, 2]
 where k *a >1 and k /a >1 
+z: basically unlimited (within Python number and precision limits)
+c: basically unlimited (within Python number and precision limits)
+
 
 The current parameter space will roughly covers about 95% of the empirical dists (including the dists of metrics and parameters), that do occur in daily data science practice. This, without using any other distribution than S distribution! In future the valid parameter space and the performance will get further expanded by additional mathematical solve of the distribution.  
 
 
 
+
 ##############################################################################################################################################################################################
 #
+# Linux Installation
 #
-#Installation
 
 
-Download the source code to <path_to_s_dist>/s_dist/ . In case unzip the zip archive
+Download the source code to <path_to_s_dist>/s_dist/ . In case unzip the zip archive and change the name of the unzipped folder to s_dist.
 
 
 [If you want to add to an existing anaconda installation:] 
@@ -66,15 +69,44 @@ bin/pip3 install <path_to_s_dist>/s_dist/
 Done.
 
 
+You have to take care, if you effectively call the pip from the python installation or the pip from anaconda installation, which do install the S dist module to different locations and environments.  
+
 
 Afterwards check the installation by
 bin/python3 -c "import s_dist"
 
 
 
-If something went wrong [Will just be your fault. Even a stupid AI does unerstand this. ;-) ]
-bin/pip3 uninstall s_dist
-Some clever error analysis
-Modification
-GOTO #Installation
+##############################################################################################################################################################################################
+#
+# OS-X Installation
+#
+
+You have to install Python or Anaconda distribution, first.
+
+Then, the addition of S dist to the Python installation or the Anaconda installation from the CLI will be just like the Linux install, except for it is 'pip' __not__ 'pip3'. 
+
+You have to take care, if you effectively call the pip from the python installation or the pip from anaconda installation, which do install the S dist module to different locations and environments.  
+
+
+
+##############################################################################################################################################################################################
+#
+# Window Installation
+#
+
+You have to install Python or Anaconda distribution, first.
+
+Then, the addition of S dist to the Python installation or the Anaconda installation from the CLI will be just like the Linux install, except for it is 'pip' __not__ 'pip3'. Windows does provide the command line interface (CLI) by Windows Power Shell.
+
+You have to take care, if you effectively call the pip from the python installation or the pip from anaconda installation, which do install the S dist module to different locations and environments.  
+ 
+
+
+Windows installation option B) WSL Environment
+
+Install WSL (Windows subsystem for Linux).
+
+Switch to the running WSL environment and install as in Linux.
+
 
